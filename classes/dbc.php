@@ -39,7 +39,7 @@ class Dbc
     $pdo = $this->new_pdo();
 
     // SQL準備
-    $sql = "select * from $this->table_name";
+    $sql = "select * from $this->table_name order by id";
     // SQL実行
     $st = $pdo->query($sql);
     // SQL結果受け取る
