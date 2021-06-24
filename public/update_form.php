@@ -3,7 +3,9 @@ require_once("../classes/blog.php");
 
 $blog = new Blog();
 $result = $blog->getById($id);
+
 print_r($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +19,10 @@ print_r($result);
     <hr>
     <form action="../classes/blog_update.php" method="POST">
         <p>ブログタイトル：</p>
-        <input type="hidden" name="id" value="<?= h($result['id']) ?>">
-        <input type="text" name="title" value="<?= h($result['title']) ?>">
+        <input type="hidden" name="id" value="<?= $blog->h($result['id']) ?>">
+        <input type="text" name="title" value="<?= $blog->h($result['title']) ?>">
         <p>ブログ本文：</p>
-        <textarea name="content" id="content" cols="30" rows="10"><?= h($result['content']) ?></textarea>
+        <textarea name="content" id="content" cols="30" rows="10"><?= $blog->h($result['content']) ?></textarea>
         <p>カテゴリ：</p>
         <select name="category" required>
             <option value="1" <?php if($result['category'] === 1) echo "selected" ?>>日常</option>

@@ -29,12 +29,12 @@ $blog_data = $blog->getAll();
     </tr>
     <?php foreach ($blog_data as $column) { ?>
       <tr>
-        <td><?= h($column['title']) ?></td>
-        <td><?= h($blog->setCategoryName($column['category'])) ?></td>
-				<td><?= h($column['post_at']) ?></td>
-        <td><a href="detail.php?id=<?= h($column['id']) ?>">詳細</a></td>
-        <td><a href="update_form.php?id=<?= h($column['id']) ?>">編集</a></td>
-        <td><a href="../classes/blog_delete.php?id=<?= h($column['id']) ?>">削除</a></td>
+        <td><?= $blog->h($column['title']) ?></td>
+        <td><?= $blog->h($blog->setCategoryName($column['category'])) ?></td>
+				<td><?= $blog->h($column['post_at']) ?></td>
+        <td><a href="detail.php?id=<?= $blog->h($column['id']) ?>">詳細</a></td>
+        <td><a href="update_form.php?id=<?= $blog->h($column['id']) ?>">編集</a></td>
+        <td><a href="../classes/blog_delete.php?id=<?= $blog->h($column['id']) ?>">削除</a></td>
       </tr>
     <?php } ?>
   </table>
