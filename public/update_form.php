@@ -24,9 +24,9 @@ print_r($result);
         <p>ブログ本文：</p>
         <textarea name="content" id="content" cols="30" rows="10"><?= $blog->h($result['content']) ?></textarea>
         <p>カテゴリ：</p>
-        <select name="category" required>
-            <option value="1" <?php if($result['category'] === 1) echo "selected" ?>>日常</option>
-            <option value="2" <?php if($result['category'] === 2) echo "selected" ?>>プログラミング</option>
+        <select name="category_id">
+            <option value="1" <?php if($result['category_id'] === 1) echo "selected" ?>>日常</option>
+            <option value="2" <?php if($result['category_id'] === 2) echo "selected" ?>>プログラミング</option>
         </select>
 				<p>
         <input type="radio" name="publish_status" value="1" <?php if($result['publish_status'] === 1) echo "checked" ?>>公開

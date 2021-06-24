@@ -30,7 +30,7 @@ $blog_data = $blog->getAll();
     <?php foreach ($blog_data as $column) { ?>
       <tr>
         <td><?= $blog->h($column['title']) ?></td>
-        <td><?= $blog->h($blog->setCategoryName($column['category'])) ?></td>
+        <td><?= $blog->h($blog->setCategoryName($column['category_id'])) ?></td>
 				<td><?= $blog->h($column['post_at']) ?></td>
         <td><a href="detail.php?id=<?= $blog->h($column['id']) ?>">詳細</a></td>
         <td><a href="update_form.php?id=<?= $blog->h($column['id']) ?>">編集</a></td>

@@ -8,11 +8,11 @@ class Blog extends Dbc
   protected $table_name = "blog";
 
   # カテゴリー名を表示
-  public function setCategoryName($category)
+  public function setCategoryName($category_id)
   {
-    if ($category === 1) {
+    if ($category_id === 1) {
       return "日常";
-    } elseif ($category === 2) {
+    } elseif ($category_id === 2) {
       return "プログラミング";
     } else {
       return "その他";
@@ -24,19 +24,19 @@ class Blog extends Dbc
   {
     $title = (string)filter_input(INPUT_POST, "title");
     $content = (string)filter_input(INPUT_POST, "content");
-    $category = (int)filter_input(INPUT_POST, "category");
+    $category_id = (int)filter_input(INPUT_POST, "category_id");
     $publish_status = (int)filter_input(INPUT_POST, "publish_status");
 
     $pdo = $this->new_pdo();
     $pdo->beginTransaction();
     try {
-      $sql = "insert into $this->table_name(title, content, category, publish_status)
-   values(:title, :content, :category, :publish_status)";
+      $sql = "insert into $this->table_name(title, content, category_id, publish_status)
+   values(:title, :content, :category_id, :publish_status)";
 
       $ps = $pdo->prepare($sql);
       $ps->bindValue(":title", $title, PDO::PARAM_STR);
       $ps->bindValue(":content", $content, PDO::PARAM_STR);
-      $ps->bindValue(":category", $category, PDO::PARAM_INT);
+      $ps->bindValue(":category_id", $category_id, PDO::PARAM_INT);
       $ps->bindValue(":publish_status", $publish_status, PDO::PARAM_INT);
 
       $ps->execute();
@@ -54,7 +54,7 @@ class Blog extends Dbc
   {
     $title = (string)filter_input(INPUT_POST, "title");
     $content = (string)filter_input(INPUT_POST, "content");
-    $category = (int)filter_input(INPUT_POST, "category");
+    $category_id = (int)filter_input(INPUT_POST, "category_id");
     $publish_status = (int)filter_input(INPUT_POST, "publish_status");
 
     if ($title === "") {
@@ -67,7 +67,7 @@ class Blog extends Dbc
     if ($content === "") {
       exit("本文を入力して下さい");
     }
-    if ($category === 0) {
+    if ($category_id === 0) {
       exit("カテゴリーは必須です");
     }
     if ($publish_status === 0) {
@@ -80,20 +80,20 @@ class Blog extends Dbc
   {
     $title = (string)filter_input(INPUT_POST, "title");
     $content = (string)filter_input(INPUT_POST, "content");
-    $category = (int)filter_input(INPUT_POST, "category");
+    $category_id = (int)filter_input(INPUT_POST, "category_id");
     $publish_status = (int)filter_input(INPUT_POST, "publish_status");
     $id = (int)filter_input(INPUT_POST, "id");
 
     $pdo = $this->new_pdo();
     $pdo->beginTransaction();
     try {
-      $sql = "update $this->table_name set title = :title, content = :content, category = :category, publish_status = :publish_status where id = :id";
+      $sql = "update $this->table_name set title = :title, content = :content, category_id = :category_id, publish_status = :publish_status where id = :id";
 
       $ps = $pdo->prepare($sql);
 
       $ps->bindValue(":title", $title, PDO::PARAM_STR);
       $ps->bindValue(":content", $content, PDO::PARAM_STR);
-      $ps->bindValue(":category", $category, PDO::PARAM_INT);
+      $ps->bindValue(":category_id", $category_id, PDO::PARAM_INT);
       $ps->bindValue(":publish_status", $publish_status, PDO::PARAM_INT);
       $ps->bindValue(":id", $id, PDO::PARAM_INT);
 
