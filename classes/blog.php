@@ -10,9 +10,9 @@ class Blog extends Dbc
   # カテゴリー名を表示
   public function setCategoryName($category)
   {
-    if ($category === "1") {
+    if ($category === 1) {
       return "日常";
-    } elseif ($category === "2") {
+    } elseif ($category === 2) {
       return "プログラミング";
     } else {
       return "その他";
