@@ -1,6 +1,6 @@
 <?php
-require_once("env.php");
-
+require_once("../config/env.php");
+# 共通で使用できる Class
 class Dbc
 {
   # テーブル名 プロパティー
