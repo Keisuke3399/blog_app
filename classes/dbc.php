@@ -27,6 +27,12 @@ class Dbc
     return $pdo;
   }
 
+  # htmlspecialchars の省略 method
+  public function h($str)
+  {
+    return htmlspecialchars($str, ENT_QUOTES, "UTF-8");
+  }
+
   # 全データ取得 (SELECT)
   public function getAll()
   {
@@ -65,4 +71,24 @@ class Dbc
     return $result;
     exit();
   }
+
+  # IDを元にデータ1件削除 (DELETE) 「プリペアドステートメント」詳細
+  public function delete($id)
+  {
+    $id = (int)filter_input(INPUT_GET, "id");
+    if ($id === 0) {
+      exit("IDが不正です");
+    }
+    // DB接続
+    $pdo = $this->new_pdo();
+    // SQL準備 (プリペアドステートメント)
+    $sql = "delete from $this->table_name where id = :id";
+    $ps = $pdo->prepare($sql);
+    $ps->bindValue(":id", $id, PDO::PARAM_INT);
+    // SQL実行
+    $result = $ps->execute();
+    echo "ブログを削除しました";
+    return $result;
+  }
+
 }
