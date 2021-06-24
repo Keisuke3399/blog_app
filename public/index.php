@@ -1,5 +1,5 @@
 <?php
-require_once("./blog.php");
+require_once("../classes/blog.php");
 
 # 取得したデータを表示
 $blog = new Blog();
@@ -25,14 +25,16 @@ $blog_data = $blog->getAll();
 			<th>投稿日時</th>
       <th>DETAIL</th>
       <th>EDIT</th>
+      <th>DELETE</th>
     </tr>
     <?php foreach ($blog_data as $column) { ?>
       <tr>
-        <td><?= $column['title'] ?></td>
-        <td><?= $blog->setCategoryName($column['category']) ?></td>
-				<td><?= $column['post_at'] ?></td>
-        <td><a href="detail.php?id=<?= $column['id'] ?>">詳細</a></td>
-        <td><a href="edit.php?id=<?= $column['id'] ?>">編集</a></td>
+        <td><?= h($column['title']) ?></td>
+        <td><?= h($blog->setCategoryName($column['category'])) ?></td>
+				<td><?= h($column['post_at']) ?></td>
+        <td><a href="detail.php?id=<?= h($column['id']) ?>">詳細</a></td>
+        <td><a href="update_form.php?id=<?= h($column['id']) ?>">編集</a></td>
+        <td><a href="../classes/blog_delete.php?id=<?= h($column['id']) ?>">削除</a></td>
       </tr>
     <?php } ?>
   </table>
