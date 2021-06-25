@@ -2,22 +2,11 @@
 require_once("../blog_classes/dbc.php");
 // ini_set('display_errors', "On");
 
+# カテゴリー専用クラス
 class Category extends Dbc
 {
   # Class Dbc からメソッドを継承 テーブル名をblogに定義
   protected $table_name = "categories";
-
-  # カテゴリー名を表示
-  // public function setCategoryName($category_id)
-  // {
-  //   if ($category_id === 1) {
-  //     return "日常";
-  //   } elseif ($category_id === 2) {
-  //     return "プログラミング";
-  //   } else {
-  //     return "その他";
-  //   }
-  // }
 
   # ブログ新規作成 (INSERT)
   public function newCategory()
