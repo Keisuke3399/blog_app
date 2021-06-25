@@ -27,9 +27,9 @@ class Category extends Dbc
 
     $pdo = $this->new_pdo();
     $pdo->beginTransaction();
+
     try {
       $sql = "insert into $this->table_name(id, title) values(:id, :title)";
-
       $ps = $pdo->prepare($sql);
       $ps->bindValue(":id", $id, PDO::PARAM_INT);
       $ps->bindValue(":title", $title, PDO::PARAM_STR);
@@ -47,7 +47,6 @@ class Category extends Dbc
   # カテゴリーのバリデーション
   public function categoryValidate()
   {
-
     $id = (int)filter_input(INPUT_POST, "id");
     $title = (string)filter_input(INPUT_POST, "title");
 
@@ -78,6 +77,7 @@ class Category extends Dbc
       $ps->bindValue(":id", $id, PDO::PARAM_INT);
       $ps->execute();
       $pdo->commit();
+
       header("Location: ../category_public/index.php");
     } catch (PDOException $e) {
       $pdo->rollBack();
