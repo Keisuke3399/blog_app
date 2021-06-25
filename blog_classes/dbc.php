@@ -1,5 +1,6 @@
 <?php
 require_once("../config/env.php");
+
 # 共通で使用できる Class
 class Dbc
 {
@@ -37,7 +38,6 @@ class Dbc
   public function getAll()
   {
     $pdo = $this->new_pdo();
-
     // SQL準備
     $sql = "select * from $this->table_name order by id";
     // SQL実行
@@ -67,7 +67,7 @@ class Dbc
     $result = $ps->fetch();
     if ($result === false) {
       error_log("Invalid id. $id");
-      exit("データがありません。");
+      exit("取得できませんでした");
     }
     return $result;
     exit();
@@ -85,8 +85,6 @@ class Dbc
     $ps->bindValue(":id", $id, PDO::PARAM_INT);
     // SQL実行
     $result = $ps->execute();
-    echo "ブログを削除しました";
     return $result;
   }
-
 }
