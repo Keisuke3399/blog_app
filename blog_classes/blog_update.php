@@ -7,4 +7,3 @@ $blog->blogValidate();
 $blog->blogUpdate();
 
 ?>
-<p><a href="../blog_public/index.php">戻る</a></p>

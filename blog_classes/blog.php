@@ -31,7 +31,7 @@ class Blog extends Dbc
 
       $ps->execute();
       $pdo->commit();
-      echo "ブログを投稿しました。";
+      header("Location: ../blog_public/index.php");
     } catch (PDOException $e) {
       $pdo->rollBack();
       error_log("PDOException: " . $e->getMessage());
