@@ -2,26 +2,16 @@
 require_once("dbc.php");
 // ini_set('display_errors', "On");
 
+# ブログ専用クラス
 class Blog extends Dbc
 {
   # Class Dbc からメソッドを継承 テーブル名をblogに定義
   protected $table_name = "blog";
 
-  # カテゴリー名を表示
-  public function setCategoryName($category_id)
-  {
-    if ($category_id === 1) {
-      return "日常";
-    } elseif ($category_id === 2) {
-      return "プログラミング";
-    } else {
-      return "その他";
-    }
-  }
-
   # ブログ新規作成 (INSERT)
   public function newBlog()
   {
+    $id = (int)filter_input(INPUT_POST, "id");
     $title = (string)filter_input(INPUT_POST, "title");
     $content = (string)filter_input(INPUT_POST, "content");
     $category_id = (int)filter_input(INPUT_POST, "category_id");
