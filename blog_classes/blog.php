@@ -20,10 +20,11 @@ class Blog extends Dbc
     $pdo = $this->new_pdo();
     $pdo->beginTransaction();
     try {
-      $sql = "insert into $this->table_name(title, content, category_id, publish_status)
-   values(:title, :content, :category_id, :publish_status)";
+      $sql = "insert into $this->table_name( id, title, content, category_id, publish_status)
+   values(:id, :title, :content, :category_id, :publish_status)";
 
       $ps = $pdo->prepare($sql);
+      $ps->bindValue(":id", $id, PDO::PARAM_INT);
       $ps->bindValue(":title", $title, PDO::PARAM_STR);
       $ps->bindValue(":content", $content, PDO::PARAM_STR);
       $ps->bindValue(":category_id", $category_id, PDO::PARAM_INT);
@@ -89,11 +90,57 @@ class Blog extends Dbc
 
       $ps->execute();
       $pdo->commit();
-      echo "ブログを更新しました。";
+      header("Location: ../blog_public/index.php");
     } catch (PDOException $e) {
       $pdo->rollBack();
       error_log("PDOException: " . $e->getMessage());
       exit();
     }
   }
+
+  # 全データ取得 (SELECT) 結合
+  public function getBlogAll()
+  {
+    $pdo = $this->new_pdo();
+    try {
+      // SQL準備 (blogテーブルとcategoriesテーブルを結合)
+      $sql = "select bl.id, bl.title, ca.title category_title, bl.post_at from blog bl left join categories ca on bl.category_id = ca.id order by bl.id";
+      // SQL実行
+      $st = $pdo->query($sql);
+      // SQL結果受け取る
+      $result = $st->fetchAll();
+      return $result;
+      exit();
+    } catch (PDOException $e) {
+      error_log("PDOException: " . $e->getMessage());
+      exit();
+    }
+  }
+
+  # SELECTタグのカテゴリを表示するためBlog classにメソッド追加
+  public function getCategoryAll()
+  {
+    try {
+      $pdo = $this->new_pdo();
+      $sql = "select id, title from categories order by id";
+      $st = $pdo->query($sql);
+      $categories = $st->fetchAll();
+      return $categories;
+    } catch (PDOException $e) {
+      error_log("PDOException: " . $e->getMessage());
+      exit();
+    }
+  }
+
+  # カテゴリー名を表示
+  // public function setCategoryName($category_id)
+  // {
+  //   if ($category_id === 1) {
+  //     return "日常";
+  //   } elseif ($category_id === 2) {
+  //     return "プログラミング";
+  //   } else {
+  //     return "その他";
+  //   }
+  // }
 }
