@@ -74,4 +74,17 @@ class Category extends Dbc
       exit();
     }
   }
+
+  # カテゴリー名を表示
+  // public function setCategoryName($category_id)
+  // {
+  //   if ($category_id === 1) {
+  //     return "日常";
+  //   } elseif ($category_id === 2) {
+  //     return "プログラミング";
+  //   } else {
+  //     return "その他";
+  //   }
+  // }
+
 }
