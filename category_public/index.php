@@ -12,13 +12,12 @@ $categories = $category->getAll();
 
 <head>
   <meta charset="UTF-8">
-  <title>ブログ一覧</title>
+  <title>CATEGORIES</title>
 </head>
 
 <body>
-  <h3>Categories</h3>
+  <h3>CATEGORIES</h3>
   <hr>
-
   <table border="1">
     <tr>
       <th>ID</th>
