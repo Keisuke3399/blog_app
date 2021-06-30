@@ -6,3 +6,4 @@ $blog->blogValidate();
 $blog->newBlog();
 
 ?>
+
