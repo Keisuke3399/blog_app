@@ -20,7 +20,7 @@ class Blog extends Dbc
     $pdo = $this->new_pdo();
     $pdo->beginTransaction();
     try {
-      $sql = "insert into $this->table_name( id, title, content, category_id, publish_status)
+      $sql = "insert into $this->table_name(id, title, content, category_id, publish_status)
    values(:id, :title, :content, :category_id, :publish_status)";
 
       $ps = $pdo->prepare($sql);
@@ -98,7 +98,7 @@ class Blog extends Dbc
     }
   }
 
-  # 全データ取得 (SELECT) 結合
+  # 全データ取得 (SELECT) categoriesテーブル結合
   public function getBlogAll()
   {
     $pdo = $this->new_pdo();
