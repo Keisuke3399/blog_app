@@ -28,9 +28,9 @@ $categories = $category->getAll();
     <p>CATEGORY：</p>
     <select name="category_id">
       <option value="">---</option>
-      <?php foreach ($categories as $category) { ?>
-        <option value="<?= htmlspecialchars($category['id']) ?>">
-          <?= htmlspecialchars($category['title']) ?>
+      <?php foreach ($categories as $category_value) { ?>
+        <option value="<?= htmlspecialchars($category_value['id']) ?>">
+          <?= htmlspecialchars($category_value['title']) ?>
         </option>
       <?php } ?>
     </select>

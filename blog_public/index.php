@@ -3,7 +3,7 @@ require_once("../blog_classes/blog.php");
 
 # 取得したデータを表示
 $blog = new Blog();
-$blog_data = $blog->getBlogAll();
+$all_blog_data = $blog->getBlogAll();
 
 ?>
 
@@ -28,15 +28,15 @@ $blog_data = $blog->getBlogAll();
       <th>EDIT</th>
       <th>DELETE</th>
     </tr>
-    <?php foreach ($blog_data as $data) { ?>
+    <?php foreach ($all_blog_data as $blog_data) { ?>
       <tr>
-        <td><?= $blog->h($data['id']) ?></td>
-        <td><?= $blog->h($data['title']) ?></td>
-        <td><?= $blog->h($data['category_title']) ?></td>
-        <td><?= $blog->h($data['post_at']) ?></td>
-        <td><a href="detail.php?id=<?= $blog->h($data['id']) ?>">DETAIL</a></td>
-        <td><a href="update_form.php?id=<?= $blog->h($data['id']) ?>">EDIT</a></td>
-        <td><a href="../blog_classes/blog_delete.php?id=<?= $blog->h($data['id']) ?>">DELETE</a></td>
+        <td><?= $blog->h($blog_data['id']) ?></td>
+        <td><?= $blog->h($blog_data['title']) ?></td>
+        <td><?= $blog->h($blog_data['category_title']) ?></td>
+        <td><?= $blog->h($blog_data['post_at']) ?></td>
+        <td><a href="detail.php?id=<?= $blog->h($blog_data['id']) ?>">DETAIL</a></td>
+        <td><a href="update_form.php?id=<?= $blog->h($blog_data['id']) ?>">EDIT</a></td>
+        <td><a href="../blog_classes/blog_delete.php?id=<?= $blog->h($blog_data['id']) ?>">DELETE</a></td>
       </tr>
     <?php } ?>
   </table>
