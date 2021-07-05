@@ -2,6 +2,7 @@
 require_once("../config/env.php");
 
 # 共通で使用できる Class
+  //代用ができるメソッドなのでreturnは$result(結果)としています。好きな変数に変更して記述可能。
 class Dbc
 {
   # テーブル名 プロパティー
