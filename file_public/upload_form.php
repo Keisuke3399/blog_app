@@ -2,7 +2,7 @@
 require_once("../file_classes/img.php");
 
 $img = new Img();
-$result = $img->getAll();
+$images = $img->getAll();
 // print_r($result);
 ?>
 
@@ -60,9 +60,9 @@ $result = $img->getAll();
     </div>
   </form>
   <div>
-    <?php foreach ($result as $file) { ?>
-      <p><img src="<?= $img->h($file['file_path']) ?>" alt=""></p>
-      <p><?= $img->h($file['caption']) ?></p>
+    <?php foreach ($images as $image) { ?>
+      <p><img src="<?= $img->h($image['file_path']) ?>" alt=""></p>
+      <p><?= $img->h($image['caption']) ?></p>
     <?php } ?>
   </div>
 </body>
