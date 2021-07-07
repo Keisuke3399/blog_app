@@ -30,7 +30,7 @@ $categories = $category->getAll();
         <td><?= $category->h($category_value['id']) ?></td>
         <td><?= $category->h($category_value['title']) ?></td>
         <td><a href="update_form.php?id=<?= $category->h($category_value['id']) ?>">EDIT</a></td>
-        <td><a href="../category_classes/category_delete.php?id=<?= $category->h($category_value['id']) ?>">DELETE</a></td>
+        <td><a href="../category_classes/category_delete.php?id=<?= $category->h($category_value['id']) ?>" onclick="return confirm('削除しても宜しいですか ?')">DELETE</a></td>
       </tr>
     <?php } ?>
   </table>

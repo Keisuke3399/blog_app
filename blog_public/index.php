@@ -36,7 +36,7 @@ $all_blog_data = $blog->getBlogAll();
         <td><?= $blog->h($blog_data['post_at']) ?></td>
         <td><a href="detail.php?id=<?= $blog->h($blog_data['id']) ?>">DETAIL</a></td>
         <td><a href="update_form.php?id=<?= $blog->h($blog_data['id']) ?>">EDIT</a></td>
-        <td><a href="../blog_classes/blog_delete.php?id=<?= $blog->h($blog_data['id']) ?>">DELETE</a></td>
+        <td><a href="../blog_classes/blog_delete.php?id=<?= $blog->h($blog_data['id']) ?>" onclick="return confirm('削除しても宜しいですか ?')">DELETE</a></td>
       </tr>
     <?php } ?>
   </table>
